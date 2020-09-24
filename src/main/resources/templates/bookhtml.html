@@ -2,13 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Bookstore</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<h1>Bookstore tehtävä</h1>
+	<h1>Books</h1>
+	<table>
+		<tbody>
+			<tr th:each="book : ${books}">
+				<td th:text="${book.title}">title</td>
+				<td th:text="${book.author}">author</td>
+				<td th:text="${book.year}">year</td>
+				<td th:text="${book.isbn}">isbn</td>
+				<td th:text="${book.price}">price</td>
 
-<p>Lisäsin myös thymeleaf spring initialzrissa :p</p>
-
-
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>
