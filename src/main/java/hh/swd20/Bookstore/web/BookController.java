@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import hh.swd20.Bookstore.domain.Book;
 import hh.swd20.Bookstore.domain.BookRepository;
@@ -38,6 +40,25 @@ public class BookController {
 		
 		return "categorylist";
 	}
+	
+	@RequestMapping(value = "/add")
+    public String addBook(Model model){
+    	model.addAttribute("category", new Category());
+    	model.addAttribute("categorys", repository2.findAll());
+        return "newcategory";
+    }   
+	
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String save(Category category) {
+		repository2.save(category);
+		return "redirect:categorylist";
+	}
+	
+	@RequestMapping(value = "/delete/{bookId}", method = RequestMethod.GET)
+    public String deleteBook(@PathVariable("bookId") Long bookId, Model model) {
+    	repository.deleteById(bookId);
+        return "redirect:../booklist";
+    }  
 	
 	
 }

@@ -15,9 +15,11 @@
 				<td th:text="${book.isbn}">isbn</td>
 				<td th:text="${book.price}">price</td>
 				<td th:text="${book.category.name}">price</td>
+				<td><a th:href="@{/delete/{bookId}(id=${book.bookId})}">Delete</a></td> 
 	
 			</tr>
 		</tbody>
 	</table>
+	<a href="/add">Add Category (go to categorylist if u want to see em lol)</a>   
 </body>
 </html>

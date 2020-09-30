@@ -16,7 +16,7 @@ public class Book {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private Long BookId;
 	private String title;
 	private String author;
 	private int year;
@@ -30,7 +30,7 @@ public class Book {
 	
 	public Book() {
 		super();
-		this.id = null;
+		this.BookId = null;
 		this.title = null;
 		this.author = null;
 		this.year = 0;
@@ -49,12 +49,12 @@ public class Book {
 	}
 		
 	
-	public Long getId() {
-		return id;
+	public Long getBookId() {
+		return BookId;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long BookId) {
+		this.BookId = BookId;
 	}
 
 	public String getTitle() {
@@ -108,9 +108,9 @@ public class Book {
 	@Override
 	public String toString() {
 		if (this.category != null)
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price + ", category=" + this.getCategory() + "]";
+		return "Book [id=" + BookId + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price + ", category=" + this.getCategory() + "]";
 		else
-			return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price + "]";
+			return "Book [id=" + BookId + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn + ", price=" + price + "]";
 	}
 	
 	
