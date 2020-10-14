@@ -10,22 +10,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 public class Category {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long categoryId;
+	private Long categoryid;
 	private String name;
 	
+	@JsonIgnoreProperties("category")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	private List<Book> books;
 	
 	public Category() {
-		super();
-		this.categoryId = null;
-		this.name = null;
+		
 	}
 	
 	public Category(String name) {
@@ -35,11 +36,11 @@ public class Category {
 		
 
 	public Long getCategoryid() {
-		return categoryId;
+		return categoryid;
 	}
 
-	public void setCategoryid(Long categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryid(Long categoryid) {
+		this.categoryid = categoryid;
 	}
 
 	public String getName() {
@@ -60,7 +61,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [categoryid=" + categoryId + ", name=" + name + "]";
+		return "Category [categoryid=" + categoryid + ", name=" + name + "]";
 	}
 	
 	

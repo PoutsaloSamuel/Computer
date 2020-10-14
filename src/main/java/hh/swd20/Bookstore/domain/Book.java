@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 public class Book {
@@ -17,6 +19,7 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long BookId;
+	
 	private String title;
 	private String author;
 	private int year;
@@ -24,18 +27,14 @@ public class Book {
 	private int price;
 	
 	@ManyToOne
+	@JsonIgnoreProperties("books")
 	@JoinColumn(name="categoryid")
 	private Category category;
 	
 	
+	
 	public Book() {
-		super();
-		this.BookId = null;
-		this.title = null;
-		this.author = null;
-		this.year = 0;
-		this.isbn = null;
-		this.price = 0;
+		
 	}
 	
 	public Book(String title, String author, int year, String isbn, int price, Category category) {
@@ -47,13 +46,15 @@ public class Book {
 		this.price = price;
 		this.category = category;
 	}
+	
+	
 		
 	
 	public Long getBookId() {
 		return BookId;
 	}
 	
-	public void setId(Long BookId) {
+	public void setBookId(Long BookId) {
 		this.BookId = BookId;
 	}
 
