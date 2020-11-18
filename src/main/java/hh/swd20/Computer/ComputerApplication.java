@@ -26,7 +26,7 @@ public class ComputerApplication {
 	public CommandLineRunner demo(ComponentRepository repository, CategoryRepository repository2,
 			UserRepository repository3) {
 		return (args) -> {
-
+// Testi datan luonti
 			log.info("Tallennus testi");
 			Category a1 = new Category("GPU");
 			repository2.save(a1);
@@ -53,10 +53,9 @@ public class ComputerApplication {
 			repository.save(new Component("Barracuda 1TB", "Seagate", 2015, "Tori.fi", 20, a7));
 			repository.save(new Component("CV650, 80 PLUS", "Corsair", 2014, "Jimms.fi", 50, a5));
 
-			User user1 = new User("user", "$2y$12$6LmFjyVVsZqwE6H.r3NFWeqlZ/wh/fN/jLnpUQrkzuhg1LF1raLPe",
-					"samuel@gmail.com", "USER");
-			User user2 = new User("admin", "$2y$10$5ZVBx3XDH6i6FdSltNYIIeJCcw/nH33wKNi7BEvm.8sKIMP7lITWe",
-					"random@gmail.com", "ADMIN");
+			// Käyttäjien luonti. Salasanat hash piiloitettu
+			User user1 = new User("user", "$2y$12$6LmFjyVVsZqwE6H.r3NFWeqlZ/wh/fN/jLnpUQrkzuhg1LF1raLPe", "USER");
+			User user2 = new User("admin", "$2y$10$5ZVBx3XDH6i6FdSltNYIIeJCcw/nH33wKNi7BEvm.8sKIMP7lITWe", "ADMIN");
 			repository3.save(user1);
 			repository3.save(user2);
 

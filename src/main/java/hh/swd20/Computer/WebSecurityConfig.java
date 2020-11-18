@@ -14,32 +14,24 @@ import hh.swd20.Computer.web.UserDetailServiceImpl;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailServiceImpl userDetailsService;
-	
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-		.authorizeRequests().antMatchers("css/**").permitAll()
-		.and()
-		.authorizeRequests().anyRequest().authenticated()
-		.and()
-	.formLogin()
-	
-		.defaultSuccessUrl("/componentlist")
-		.permitAll()
-		.and()
-	.logout()
-		.permitAll();
+		http.authorizeRequests().antMatchers("css/**", "/h2-console").permitAll().and().authorizeRequests().anyRequest()
+				.authenticated().and().formLogin().defaultSuccessUrl("/componentlist").permitAll().and().logout()
+				.permitAll();
+
+		http.csrf().disable();
+		http.headers().frameOptions().disable();
 	}
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 
-	
 	}
-	
+
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,28 +11,26 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
 public class Category {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long categoryid;
 	private String name;
-	
+
 	@JsonIgnoreProperties("category")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	private List<Component> components;
-	
+
 	public Category() {
-		
+
 	}
-	
+
 	public Category(String name) {
 		super();
 		this.name = name;
 	}
-		
 
 	public Long getCategoryid() {
 		return categoryid;
@@ -63,7 +60,5 @@ public class Category {
 	public String toString() {
 		return "Category [categoryid=" + categoryid + ", name=" + name + "]";
 	}
-	
-	
-	
+
 }
