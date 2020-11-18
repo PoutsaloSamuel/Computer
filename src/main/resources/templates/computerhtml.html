@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Computer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<button onclick="language()">Finnish/Suomi</button><button onclick="english()">English/Englanti</button>
+	<script type="text/javascript">function language() {
+	document.getElementById("1A").innerHTML="Minun komponentit ";
+	document.getElementById("1B").innerHTML="Tervetuloa [[${#httpServletRequest.remoteUser}]]";
+	document.getElementById("1C").innerHTML="Onko sinulla vaikeuksia muistaa kaikki tietokoneesi komponentit? Haluatko jakaa tietokoneesi speksit? Tallenna ne tälle nettisivulle!";
+	document.getElementById("2").innerHTML="Malli";
+	document.getElementById("3").innerHTML="Brändi";
+	document.getElementById("4").innerHTML="Vuosi";
+	document.getElementById("5").innerHTML="Kaupan linkki";
+	document.getElementById("6").innerHTML="Hinta";
+	document.getElementById("7").innerHTML="Kategoria";
+	document.getElementById("10").innerHTML="Komponenttien määrä";
+	document.getElementById("11").innerHTML="Lisää komponentti";
+	document.getElementById("12").innerHTML="Lisää kategoria(ADMIN)";
+	document.getElementById("13").innerHTML="Lista kategorioista(ADMIN)";
+	}
+	function english(){
+		location.reload();
+	}
+	</script>
+	<h1 id="1A">My components</h1>
+	<h3 th:inline="text" id="1B">Welcome
+		[[${#httpServletRequest.remoteUser}]]</h3><form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+	</form>
+	
+	<h4 id="1C">Having problems remembering all of your pc components?
+		Want to share pc specs? Just save them on this website!</h4>
+
+	
+
+
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th>ID</th>
+				<th id="2">Model</th>
+				<th id="3">Brand</th>
+				<th id="4">Year</th>
+				<th id="5">Store Link</th>
+				<th id="6">Price</th>
+				<th id="7">Category</th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+			</tr>
+
+			<tr th:each="component : ${components}">
+				<td th:text="${component.ComponentId}">Id</td>
+				<td th:text="${component.model}">model</td>
+				<td th:text="${component.brand}">brand</td>
+				<td th:text="${component.year}">year</td>
+				<td th:text="${component.storelink}">storelink</td>
+				<td th:text="${component.price}">price</td>
+				<td th:text="${component.category.name}">price</td>
+				<td id="8" sec:authorize="hasAuthority('ADMIN')"><a
+					th:href="@{/delete/{id}(id=${component.ComponentId})}">Delete</a></td>
+
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th id="10">Amount of components</th>
+
+			</tr>
+			<tr>
+				<td th:text="${components.size()}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<a id="11" href="/addcomponent" class="btn btn-primary">Add
+		Component</a>
+	<a id="12" href="/add" class="btn btn-primary"
+		sec:authorize="hasAuthority('ADMIN')">Add Category (ADMIN)</a>
+	<a id="13" href="/categorylist" class="btn btn-primary"
+		sec:authorize="hasAuthority('ADMIN')">List of Categories (ADMIN)</a>
+</body>
+</html>

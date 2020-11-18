@@ -1,4 +1,4 @@
-package hh.swd20.Bookstore.domain;
+package hh.swd20.Computer.domain;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class Category {
 	
 	@JsonIgnoreProperties("category")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-	private List<Book> books;
+	private List<Component> components;
 	
 	public Category() {
 		
@@ -51,12 +51,12 @@ public class Category {
 		this.name = name;
 	}
 
-	public List<Book> getBooks() {
-		return books;
+	public List<Component> getComponents() {
+		return components;
 	}
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
+	public void setBooks(List<Component> components) {
+		this.components = components;
 	}
 
 	@Override

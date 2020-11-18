@@ -6,14 +6,17 @@
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Books</h1>
+	<h1>Categories</h1>
 	<table class="table table-striped">
 		<tbody>
 			<tr th:each="category : ${categorys}">
-				<td th:text="${category.name}">Category</td>
+			<td th:text="${category.name}">Category</td>
+			
 			</tr>
 		</tbody>
+		
 	</table>
-	<a href="/add">Add category</a>  
+	<a href="/add" class="btn btn-primary">Add category</a>
+	<a href="/componentlist" class="btn btn-primary">Go back</a> 
 </body>
 </html>

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>hh.swd20</groupId>
-	<artifactId>Bookstore</artifactId>
+	<artifactId>Computer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Bookstore</name>
+	<name>Computer</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

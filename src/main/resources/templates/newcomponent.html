@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Computer components</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<script type="text/javascript">function language() {
+	document.getElementById("1A").innerHTML="Lisää uusi komponentti!";
+	document.getElementById("1B").innerHTML="Malli";
+	document.getElementById("1C").innerHTML="Brändi";
+	document.getElementById("2").innerHTML="Vuosi";
+	document.getElementById("3").innerHTML="Kaupan linkki";
+	document.getElementById("4").innerHTML="Hinta";
+	document.getElementById("5").innerHTML="Kategoria";
+}
+function english(){
+	location.reload();
+}
+	</script>
+	<h1 id="1A" >Add new component!</h1><button onclick="language()">Finnish/Suomi</button>
+	<button onclick="english()">English/Englanti</button>
+	<div class="table table-striped">
+		<form th:object="${component}" th:action="@{savecomponent}" action="#" method="post">
+		  	<label id="1B" for="bmodel">Model</label>
+			<input type="text" id="bmodel" th:field="*{model}" />
+			
+		  	<label id="1C"  for="bbrand">Brand</label>
+			<input type="text" id="bbrand" th:field="*{brand}" />
+			
+		  	<label id="2"  for="byear">Year</label>
+			<input type="text" id="byear" th:field="*{year}" />
+			
+			<label id="3"  for="bstorelink">Store Link</label>
+			<input type="text" id="bstorelink" th:field="*{storelink}" />
+			
+			<label id="4"  for="bprice">Price</label>
+			<input type="text" id="bprice" th:field="*{price}" />
+
+			<div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label id="5"  for="categorylist">Category</label>
+			 <select id="categorylist" th:field="*{category}" class="form-control">
+       			<option th:each="category: ${categorys}" th:value="${category.categoryid}" th:text="${category.name}"></option>
+    		</select>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Save" class="btn btn-primary"></input>
+			<a  href="/componentlist" class="btn btn-primary">Cancel</a>
+		</form>
+	</div>
+</body>
+</html>
